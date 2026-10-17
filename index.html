@@ -396,3 +396,732 @@ footer {
     color: #b99a62;
     font-style: italic;
 }
+    @media (max-width: 600px) {
+    main {
+        padding: 45px 16px 30px;
+    }
+
+    .rose-decoration {
+        width: 170px;
+        height: 250px;
+        opacity: .35;
+    }
+
+    .rose-left {
+        left: -100px;
+    }
+
+    .rose-right {
+        right: -105px;
+    }
+
+    .letter {
+        padding: 35px 23px;
+        border-width: 6px;
+    }
+
+    .confession p {
+        font-size: 1.12rem;
+    }
+
+    .envelope-scene {
+        margin-top: 35px;
+    }
+}
+
+/* DATE PLANNER */
+
+.date-planner {
+    display: none;
+    margin-top: 30px;
+    padding: 22px 16px;
+    border: 2px solid #b99a62;
+    background: #f0e2c3;
+    color: #39251c;
+    text-align: center;
+}
+
+.date-planner.show {
+    display: block;
+    animation: paperArrive 1s ease both;
+}
+
+.date-planner h2,
+.date-planner h3 {
+    color: #704632;
+    font-weight: normal;
+}
+
+.date-planner h2 {
+    font-family: "Great Vibes", cursive;
+    font-size: 2.5rem;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.calendar-header button,
+.food-option,
+.submit-date {
+    padding: 9px 12px;
+    background: #543326;
+    color: #ead9b8;
+    border: 1px solid #b99a62;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.calendar-header button:hover,
+.food-option:hover,
+.submit-date:hover {
+    background: #7a3439;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 5px;
+}
+
+.calendar-day,
+.calendar-date {
+    min-width: 0;
+    padding: 9px 0;
+    text-align: center;
+}
+
+.calendar-day {
+    font-weight: bold;
+    color: #805c3b;
+}
+
+.calendar-date {
+    background: #e5d0a9;
+    border: 1px solid #c5a675;
+    color: #39251c;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.calendar-date:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.calendar-date.selected {
+    background: #651d2a;
+    color: #fff0d0;
+    border-color: #651d2a;
+}
+
+.selected-date-card {
+    margin: 15px 0;
+    padding: 12px;
+    border: 1px solid #b99a62;
+    text-align: left;
+    background: #f7ecd5;
+}
+
+.selected-date-card label {
+    display: block;
+    margin: 8px 0;
+}
+
+.selected-date-card input {
+    display: block;
+    width: 100%;
+    padding: 9px;
+    margin-top: 4px;
+    border: 1px solid #b99a62;
+    background: #fff9ed;
+    color: #39251c;
+    font: inherit;
+}
+
+.food-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.food-option.selected {
+    background: #7a3439;
+    outline: 2px solid #b99a62;
+}
+
+.date-confirmation {
+    margin-top: 18px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    .calendar-grid {
+        gap: 3px;
+    }
+
+    .calendar-date,
+    .calendar-day {
+        padding: 8px 0;
+        font-size: .9rem;
+    }
+
+    .food-options {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-header button {
+        padding: 7px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="rose-decoration rose-left" aria-hidden="true"></div>
+<div class="rose-decoration rose-right" aria-hidden="true"></div>
+
+<main>
+
+    <h1>I want to tell you...</h1>
+
+    <p class="subtitle">A letter, written just for you.</p>
+
+    <div class="envelope-scene" id="envelopeScene">
+
+        <div class="letter-preview" aria-hidden="true">
+            <div class="preview-title">My dearest,</div>
+            <div class="preview-lines"></div>
+        </div>
+
+        <button class="envelope-button" id="openButton"
+                aria-label="Open my letter">
+
+            <div class="envelope">
+                <div class="envelope-flap" id="envelopeFlap"></div>
+            </div>
+
+            <span class="open-label">Open my letter ♡</span>
+        </button>
+    </div>
+
+    <article class="letter" id="letter">
+
+        <p class="letter-heading">✦ A LETTER FROM THE HEART ✦</p>
+
+        <div class="confession" id="confession">
+
+            <p class="handwriting">Dear,</p>
+
+            <p>
+                I'm normally not great with any type of affection,
+                but you're a major exception.
+            </p>
+
+            <p>
+                I don't know if you've noticed, but I can't keep
+                my eyes off of you. You're beautiful in every
+                sense of the word, and I mean it with every
+                fiber of my being.
+            </p>
+
+            <p>
+                The way you smile, the way you laugh...
+                it's so addicting to me. I really value your
+                personality and the way you make me feel
+                even without trying.
+            </p>
+
+            <p>
+                It's perfectly understandable if you don't
+                like me — you probably don't even know
+                me that well.
+            </p>
+
+            <p>
+                But I was wondering if you would consider
+                going on a date with me?
+            </p>
+
+        </div>
+
+        <div class="signature" id="signature">
+            <p><i>With sincerity,</i></p>
+            <p class="handwriting">From, Liz A</p>
+            <p style="text-align:right;color:#805c3b;">— ❦ —</p>
+        </div>
+
+        <div class="music">
+            <p>A little song to accompany my words ♡</p>
+
+            <iframe
+                id="spotify"
+                src=""
+                width="100%"
+                height="152"
+                style="border:0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+
+            <p style="font-size:.9rem">
+                If the music doesn't start, press Play.
+            </p>
+        </div>
+
+        <div class="responses" id="responses">
+
+            <h2 class="handwriting">Would you consider it? 🤎</h2>
+
+            <p>Whatever your answer, thank you for reading my letter.</p>
+
+            <button class="response-button"
+                onclick="chooseResponse('yes')">
+                I'd love to 🤎
+            </button>
+
+            <button class="response-button"
+                onclick="chooseResponse('talk')">
+                I'd like to talk about it 💌
+            </button>
+
+            <button class="response-button"
+                onclick="chooseResponse('no')">
+                I don't feel the same way
+            </button>
+
+            <p class="status" id="status" aria-live="polite"></p>
+
+        </div>
+
+        <section class="date-planner" id="datePlanner">
+
+            <h2>Our Little Date ♡</h2>
+
+            <p>
+                If you'd like to go on a date with me, choose
+                any dates that work for you. You can select more than one!
+            </p>
+
+            <div class="calendar-header">
+                <button type="button" onclick="changeMonth(-1)"
+                    aria-label="Previous month">❮</button>
+
+                <h3 id="calendarMonth"></h3>
+
+                <button type="button" onclick="changeMonth(1)"
+                    aria-label="Next month">❯</button>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid"></div>
+
+            <div id="selectedDates">
+                <p>Select a date on the calendar to begin ♡</p>
+            </div>
+
+            <h3>What kind of date sounds lovely?</h3>
+
+            <div class="food-options">
+                <button class="food-option" type="button"
+                    onclick="chooseFood(this, 'Dessert Date')">
+                    Dessert Date 🍰
+                </button>
+
+                <button class="food-option" type="button"
+                    onclick="chooseFood(this, &quot;I'll pick the restaurant&quot;)">
+                    I'll pick the restaurant 🍽️
+                </button>
+
+                <button class="food-option" type="button"
+                    onclick="chooseFood(this, 'Breakfast Date')">
+                    Breakfast Date 🥐
+                </button>
+
+                <button class="food-option" type="button"
+                    onclick="chooseFood(this, 'Surprise me!')">
+                    Surprise me! 🎁
+                </button>
+            </div>
+
+            <button class="submit-date" type="button"
+                onclick="submitDatePlan()">
+                Save our date preferences ♡
+            </button>
+
+            <div class="date-confirmation" id="dateConfirmation"
+                aria-live="polite"></div>
+
+        </section>
+
+    </article>
+
+    <footer>sealed with care ♡</footer>
+
+</main>
+<script>
+const openButton = document.getElementById("openButton");
+const envelopeScene = document.getElementById("envelopeScene");
+const letter = document.getElementById("letter");
+
+let opened = false;
+
+const wait = ms =>
+    new Promise(resolve => setTimeout(resolve, ms));
+
+openButton.addEventListener("click", async () => {
+    if (opened) return;
+
+    opened = true;
+    envelopeScene.classList.add("opening");
+
+    await wait(1700);
+
+    envelopeScene.classList.add("opened");
+    letter.classList.add("show");
+
+    const paragraphs = [
+        ...document.querySelectorAll("#confession p")
+    ];
+
+    for (const paragraph of paragraphs) {
+        await wait(1050);
+        paragraph.classList.add("written");
+    }
+
+    await wait(1100);
+    document.getElementById("signature").classList.add("show");
+
+    await wait(1200);
+    document.getElementById("responses").classList.add("show");
+});
+
+/* DATE PLANNER */
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+let calendarMonth = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    1
+);
+
+const selectedDates = new Map();
+let selectedFood = "";
+
+function chooseResponse(answer) {
+    const status = document.getElementById("status");
+    const planner = document.getElementById("datePlanner");
+
+    if (answer === "yes") {
+        status.textContent =
+            "You just made me smile. Let's plan our little date! 🤎";
+
+        planner.classList.add("show");
+        renderCalendar();
+
+        setTimeout(() => {
+            planner.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }, 200);
+
+    } else if (answer === "talk") {
+        planner.classList.remove("show");
+        status.textContent =
+            "Of course. Take your time — I'd be happy to talk. 💌";
+
+    } else {
+        planner.classList.remove("show");
+        status.textContent =
+            "Thank you for being honest with me. I respect your feelings. 🤎";
+    }
+}
+
+function changeMonth(amount) {
+    calendarMonth.setMonth(calendarMonth.getMonth() + amount);
+
+    const firstAllowedMonth = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        1
+    );
+
+    if (calendarMonth < firstAllowedMonth) {
+        calendarMonth = firstAllowedMonth;
+    }
+
+    renderCalendar();
+}
+
+function dateKey(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+function renderCalendar() {
+    const grid = document.getElementById("calendarGrid");
+    const monthTitle = document.getElementById("calendarMonth");
+
+    grid.innerHTML = "";
+
+    monthTitle.textContent = calendarMonth.toLocaleDateString(
+        "en-US",
+        {
+            month: "long",
+            year: "numeric"
+        }
+    );
+
+    ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        .forEach(day => {
+            const heading = document.createElement("div");
+            heading.className = "calendar-day";
+            heading.textContent = day;
+            grid.appendChild(heading);
+        });
+
+    const year = calendarMonth.getFullYear();
+    const month = calendarMonth.getMonth();
+
+    const firstWeekday = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    for (let i = 0; i < firstWeekday; i++) {
+        grid.appendChild(document.createElement("div"));
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const key = dateKey(date);
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "calendar-date";
+        button.textContent = day;
+        button.setAttribute(
+            "aria-label",
+            date.toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            })
+        );
+
+        if (date < today) {
+            button.disabled = true;
+        }
+
+        if (selectedDates.has(key)) {
+            button.classList.add("selected");
+            button.setAttribute("aria-pressed", "true");
+        } else {
+            button.setAttribute("aria-pressed", "false");
+        }
+
+        button.addEventListener("click", () => {
+            if (selectedDates.has(key)) {
+                selectedDates.delete(key);
+            } else {
+                selectedDates.set(key, {
+                    time: "",
+                    date: key
+                });
+            }
+
+            renderCalendar();
+            renderSelectedDates();
+        });
+
+        grid.appendChild(button);
+    }
+
+    const previousButton = document.querySelector(
+        '.calendar-header button[aria-label="Previous month"]'
+    );
+
+    previousButton.disabled =
+        year === today.getFullYear() &&
+        month === today.getMonth();
+}
+
+function renderSelectedDates() {
+    const container = document.getElementById("selectedDates");
+    container.innerHTML = "";
+
+    if (selectedDates.size === 0) {
+        container.innerHTML =
+            "<p>Select a date on the calendar to begin ♡</p>";
+        return;
+    }
+
+    const heading = document.createElement("h3");
+    heading.textContent = "Your possible dates ♡";
+    container.appendChild(heading);
+
+    [...selectedDates.keys()].sort().forEach(key => {
+        const entry = selectedDates.get(key);
+
+        const card = document.createElement("div");
+        card.className = "selected-date-card";
+
+        const dateLabel = document.createElement("strong");
+        dateLabel.textContent = new Date(
+            key + "T12:00:00"
+        ).toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        });
+
+        const label = document.createElement("label");
+        label.textContent = "What time works for you?";
+
+        const timeInput = document.createElement("input");
+        timeInput.type = "time";
+        timeInput.value = entry.time;
+        timeInput.required = true;
+
+        timeInput.addEventListener("change", () => {
+            entry.time = timeInput.value;
+        });
+
+        label.appendChild(timeInput);
+        card.appendChild(dateLabel);
+        card.appendChild(label);
+        container.appendChild(card);
+    });
+}
+
+function chooseFood(button, food) {
+    selectedFood = food;
+
+    document.querySelectorAll(".food-option").forEach(option => {
+        option.classList.remove("selected");
+        option.setAttribute("aria-pressed", "false");
+    });
+
+    button.classList.add("selected");
+    button.setAttribute("aria-pressed", "true");
+}
+
+function submitDatePlan() {
+    const confirmation =
+        document.getElementById("dateConfirmation");
+
+    if (selectedDates.size === 0) {
+        confirmation.textContent =
+            "Please select at least one possible date first. 🤎";
+        return;
+    }
+
+    const dates = [...selectedDates.entries()].sort(
+        ([dateA], [dateB]) => dateA.localeCompare(dateB)
+    );
+
+    const missingTime = dates.some(
+        ([, entry]) => !entry.time
+    );
+
+    if (missingTime) {
+        confirmation.textContent =
+            "Please choose a time for every date you've selected. 🕰️";
+        return;
+    }
+
+    if (!selectedFood) {
+        confirmation.textContent =
+            "Please choose what kind of date you'd enjoy. 🍰";
+        return;
+    }
+
+    const summary = dates.map(([key, entry]) => {
+        const dateText = new Date(
+            key + "T12:00:00"
+        ).toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        });
+
+        const timeParts = entry.time.split(":");
+        const timeDate = new Date();
+        timeDate.setHours(
+            Number(timeParts[0]),
+            Number(timeParts[1])
+        );
+
+        const timeText = timeDate.toLocaleTimeString(
+            "en-US",
+            {
+                hour: "numeric",
+                minute: "2-digit"
+            }
+        );
+
+        return `${dateText} at ${timeText}`;
+    });
+
+    const result = {
+        dates: summary,
+        dateIdea: selectedFood
+    };
+
+    try {
+        sessionStorage.setItem(
+            "datePlanPreferences",
+            JSON.stringify(result)
+        );
+    } catch (error) {
+        console.warn("The browser could not save the preferences.", error);
+    }
+
+    confirmation.innerHTML = "";
+
+    const heading = document.createElement("h3");
+    heading.textContent = "Our date possibilities 🤎";
+
+    const details = document.createElement("p");
+    details.textContent =
+        summary.join(" • ") +
+        " | Date idea: " +
+        selectedFood;
+
+    const sweetMessage = document.createElement("p");
+    sweetMessage.textContent =
+        "Thank you for choosing your preferences! I can't wait to see what works for us. ♡";
+
+    confirmation.appendChild(heading);
+    confirmation.appendChild(details);
+    confirmation.appendChild(sweetMessage);
+
+    confirmation.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+</script>
+
+</body>
+</html>
