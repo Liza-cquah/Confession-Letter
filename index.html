@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter for You 🥀</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --brown: #241710;
+    --burgundy: #651d2a;
+    --gold: #b99a62;
+    --parchment: #ead9b8;
+    --ink: #39251c;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 35%, #503426 0%, #302016 45%, #160e0a 100%);
+    color: var(--parchment);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+main {
+    position: relative;
+    isolation: isolate;
+    padding: 65px 20px 40px;
+    max-width: 900px;
+    margin: auto;
+    min-height: 100vh;
+}
+
+/* ROSE DECORATIONS */
+
+.rose-decoration {
+    position: fixed;
+    z-index: -1;
+    width: 270px;
+    height: 370px;
+    pointer-events: none;
+    opacity: .63;
+    background-image:
+        linear-gradient(to bottom, transparent 45%, #241710 100%),
+        url("https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=700&q=85");
+    background-size: cover;
+    background-position: center;
+    filter: saturate(.8) brightness(.65);
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+}
+
+.rose-left {
+    top: 12%;
+    left: -125px;
+    transform: rotate(-12deg);
+    border-radius: 48% 52% 30% 20%;
+}
+
+.rose-right {
+    top: 38%;
+    right: -135px;
+    transform: rotate(15deg);
+    border-radius: 52% 48% 20% 30%;
+    background-position: 65% center;
+}
+
+h1 {
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-style: italic;
+    font-weight: normal;
+    margin-bottom: 8px;
+    text-shadow: 0 3px 20px #120b08;
+}
+
+.subtitle {
+    color: #c5a675;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+.handwriting {
+    font-family: "Great Vibes", cursive;
+    font-weight: normal;
+}
+
+/* ENVELOPE */
+
+.envelope-scene {
+    position: relative;
+    width: min(310px, 88vw);
+    height: 235px;
+    margin: 48px auto 0;
+    perspective: 1000px;
+}
+
+.envelope-button {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--parchment);
+    font-family: inherit;
+    padding: 0;
+}
+
+.envelope {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    max-width: 100%;
+    height: 160px;
+    background: linear-gradient(145deg, #784735, #4b291f);
+    border: 1px solid #bd9b60;
+    border-radius: 3px;
+    box-shadow: 0 22px 40px #100905a8, inset 0 0 15px #2a140e;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(145deg, #86533b, #573124);
+    clip-path: polygon(0 0, 50% 62%, 100% 0, 100% 100%, 0 100%);
+    border-radius: 2px;
+}
+
+.envelope::after {
+    content: "♡";
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    top: 62%;
+    transform: translate(-50%, -50%);
+    color: #d5b477;
+    font-size: 2rem;
+    text-shadow: 0 2px 5px #30140e;
+}
+
+.envelope-flap {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(160deg, #8a5540, #643727);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top center;
+    transform: rotateX(0deg);
+    transition: transform .85s ease, z-index 0s .4s;
+    backface-visibility: visible;
+}
+
+.envelope-button:hover .envelope {
+    filter: brightness(1.12);
+}
+
+.envelope-button:hover {
+    transform: translateY(-3px);
+}
+
+.letter-preview {
+    position: absolute;
+    z-index: 2;
+    bottom: 52px;
+    left: 50%;
+    width: 180px;
+    height: 125px;
+    padding: 18px 10px;
+    background: linear-gradient(110deg, #f2e5c8, #e2cca2);
+    color: #5c3526;
+    border: 1px solid #c2a16a;
+    box-shadow: 0 3px 12px #140b07a0;
+    transform: translateX(-50%) translateY(25px);
+    transition: transform 1.25s cubic-bezier(.2,.75,.25,1), opacity .6s ease;
+}
+
+.preview-lines {
+    margin-top: 9px;
+    height: 2px;
+    background: #bba27c;
+    box-shadow: 0 12px 0 #bba27c, 0 24px 0 #bba27c, 0 36px 0 #bba27c;
+    opacity: .7;
+}
+
+.preview-title {
+    font-family: "Great Vibes", cursive;
+    font-size: 1.5rem;
+}
+
+.envelope-scene.opening .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope-scene.opening .letter-preview {
+    transform: translateX(-50%) translateY(-95px);
+}
+
+.envelope-scene.opening .envelope-button {
+    pointer-events: none;
+}
+
+.envelope-scene.opened {
+    animation: envelopeFade .7s ease forwards;
+    animation-delay: 1.3s;
+}
+
+.envelope-scene.opened .letter-preview {
+    opacity: 0;
+}
+
+@keyframes envelopeFade {
+    to {
+        opacity: 0;
+        transform: translateY(-18px) scale(.95);
+        visibility: hidden;
+    }
+}
+
+.open-label {
+    position: absolute;
+    width: 100%;
+    bottom: -3px;
+    left: 0;
+    font-size: 1.2rem;
+    color: #e3cda4;
+    transition: opacity .4s;
+}
+
+.envelope-scene.opening .open-label {
+    opacity: 0;
+}
+
+/* LOVE LETTER */
+
+.letter {
+    display: none;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    padding: 42px 36px;
+    max-width: 650px;
+    text-align: left;
+    color: var(--ink);
+    background:
+        radial-gradient(ellipse at 15% 10%, #fff4d8 0%, transparent 50%),
+        linear-gradient(135deg, #f0e2c3, #e6d2aa 65%, #ddc49a);
+    border: 8px double #b99a62;
+    box-shadow: 0 25px 65px #0d0705b8, inset 0 0 35px #aa895143;
+}
+
+.letter.show {
+    display: block;
+    animation: paperArrive 1.4s cubic-bezier(.2,.7,.2,1) both;
+}
+
+@keyframes paperArrive {
+    from {
+        opacity: 0;
+        transform: translateY(-45px) scale(.94);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.letter::before {
+    content: "❦";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #9b7648;
+    font-size: 1.5rem;
+}
+
+.letter-heading {
+    text-align: center;
+    color: #805c3b;
+    letter-spacing: 3px;
+    font-size: .8rem;
+    margin-top: 15px;
+    margin-bottom: 28px;
+}
+
+.confession p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin: 0 0 20px;
+    opacity: 0;
+}
+
+.confession p.written {
+    animation: ink 1.1s ease forwards;
+}
+
+.confession p.handwriting {
+    font-size: 2.5rem;
+    color: #704632;
+    margin-bottom: 22px;
+}
+
+@keyframes ink {
+    to {
+        opacity: 1;
+    }
+}
+
+.signature {
+    text-align: right;
+    margin-top: 38px;
+    opacity: 0;
+}
+
+.signature.show {
+    animation: ink 1.5s forwards;
+}
+
+.signature p {
+    margin-bottom: 5px;
+}
+
+.signature .handwriting {
+    font-size: 2.6rem;
+    color: #704632;
+    margin-top: 8px;
+}
+
+.music {
+    margin-top: 32px;
+    text-align: center;
+    padding-top: 22px;
+    border-top: 1px solid #b99a6277;
+}
+
+.music p {
+    font-style: italic;
+}
+
+iframe {
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+.responses {
+    display: none;
+    text-align: center;
+    margin-top: 35px;
+}
+
+.responses.show {
+    display: block;
+    animation: ink 1.2s forwards;
+}
+
+.response-button {
+    padding: 12px 17px;
+    margin: 6px;
+    cursor: pointer;
+    color: #ead9b8;
+    background: #543326;
+    border: 1px solid #b99a62;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: background .3s, transform .3s;
+}
+
+.response-button:hover {
+    background: #7a3439;
+    transform: translateY(-2px);
+}
+
+.status {
+    min-height: 25px;
+    font-style: italic;
+}
+
+footer {
+    margin-top: 55px;
+    color: #b99a62;
+    font-style: italic;
+}
