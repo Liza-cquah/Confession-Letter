@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Letter for You 🥀</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(
+        circle at center,
+        #493023,
+        #241710 75%
+    );
+    color: #ead9b8;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+main {
+    padding: 65px 20px;
+    max-width: 850px;
+    margin: auto;
+}
+
+h1 {
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-style: italic;
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #c5a675;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+.roses {
+    font-size: 2.3rem;
+    margin: 25px;
+    animation: sway 3s ease-in-out infinite alternate;
+}
+
+@keyframes sway {
+    from { transform: rotate(-5deg); }
+    to { transform: rotate(5deg); }
+}
+
+.envelope-button {
+    background: none;
+    border: none;
+    color: #ead9b8;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.envelope {
+    position: relative;
+    width: 220px;
+    height: 145px;
+    margin: auto;
+    background: #67432f;
+    border: 1px solid #b99a62;
+    box-shadow: 0 15px 35px #120b08;
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    transition: transform .4s;
+}
+
+.envelope-button:hover .envelope {
+    transform: translateY(-7px);
+}
+
+.open-label {
+    display: block;
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.letter {
+    display: none;
+    position: relative;
+    margin: 45px auto 0;
+    padding: 40px 30px;
+    max-width: 650px;
+    background: #ead9b8;
+    color: #39251c;
+    text-align: left;
+    box-shadow: 0 15px 40px #10090499;
+    border: 8px double #b99a62;
+}
+
+.letter.show {
+    display: block;
+    animation: reveal 1.3s ease forwards;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.letter-heading {
+    text-align: center;
+    color: #805c3b;
+    letter-spacing: 3px;
+    font-size: .8rem;
+}
+
+.handwriting {
+    font-family: "Great Vibes", cursive;
+    font-size: 2.3rem;
+}
+
+.confession p {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    opacity: 0;
+    margin-bottom: 18px;
+}
+
+.confession p.written {
+    animation: ink 1s ease forwards;
+}
+
+@keyframes ink {
+    to { opacity: 1; }
+}
+
+.quill {
+    display: none;
+    position: absolute;
+    right: 15px;
+    font-size: 2rem;
+    transition: top 1s, right 1s;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 35px;
+    opacity: 0;
+}
+
+.signature.show {
+    animation: ink 1.5s forwards;
+}
+
+.signature .handwriting {
+    margin-bottom: 0;
+}
+
+.music {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.music p {
+    font-style: italic;
+}
+
+iframe {
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+.responses {
+    display: none;
+    text-align: center;
+    margin-top: 35px;
+}
+
+.responses.show {
+    display: block;
+    animation: reveal 1s forwards;
+}
+
+.response-button {
+    padding: 12px 17px;
+    margin: 6px;
+    cursor: pointer;
+    color: #ead9b8;
+    background: #543326;
+    border: 1px solid #b99a62;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.response-button:hover {
+    background: #7a3439;
+}
+
+.status {
+    min-height: 25px;
+    font-style: italic;
+}
+
+footer {
+    margin-top: 50px;
+    color: #b99a62;
+    font-style: italic;
+}
+
+@media (max-width: 500px) {
+    main {
+        padding: 45px 16px;
+    }
+
+    .letter {
+        padding: 30px 22px;
+    }
+
+    .confession p {
+        font-size: 1.1rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+    <div class="roses">🥀 🥀 🥀</div>
+
+    <h1>I want to tell you...</h1>
+
+    <p class="subtitle">
+        A letter, written just for you.
+    </p>
+
+    <button class="envelope-button" id="openButton">
+        <div class="envelope">✉</div>
+        <span class="open-label">Open my letter ♡</span>
+    </button>
+
+    <article class="letter" id="letter">
+
+        <p class="letter-heading">
+            ✦ A LETTER FROM THE HEART ✦
+        </p>
+
+        <div class="confession" id="confession">
+
+            <p class="handwriting">My dearest,</p>
+
+            <p>
+                I'm normally not great with any type of affection,
+                but you're a major exception.
+            </p>
+
+            <p>
+                I don't know if you've noticed, but I can't keep
+                my eyes off of you. You're beautiful in every
+                sense of the word, and I mean it with every
+                fiber of my being.
+            </p>
+
+            <p>
+                The way you smile, the way you laugh...
+                it's so addicting to me. I really value your
+                personality and the way you make me feel
+                even without trying.
+            </p>
+
+            <p>
+                It's perfectly understandable if you don't
+                like me — you probably don't even know
+                me that well.
+            </p>
+
+            <p>
+                But I was wondering if you would consider
+                going on a date with me?
+            </p>
+
+        </div>
+
+        <div class="signature" id="signature">
+
+            <p><i>With sincerity,</i></p>
+
+            <p class="handwriting">From, Liz A</p>
+
+            <p style="text-align:right;color:#805c3b;">
+                — ❦ —
+            </p>
+
+        </div>
+
+        <div class="music">
+
+            <p>A little song to accompany my words ♡</p>
+
+            <!-- We will add the correct Spotify track ID later. -->
+            <iframe
+                id="spotify"
+                src=""
+                width="100%"
+                height="152"
+                style="border:0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+
+            <p style="font-size:.9rem">
+                If the music doesn't start, press Play.
+            </p>
+
+        </div>
+
+        <div class="responses" id="responses">
+
+            <h2 class="handwriting">
+                Would you consider it? 🤎
+            </h2>
+
+            <p>
+                Whatever your answer, thank you for reading my letter.
+            </p>
+
+            <button class="response-button"
+                onclick="chooseResponse('I would love to! 🤎')">
+                I'd love to 🤎
+            </button>
+
+            <button class="response-button"
+                onclick="chooseResponse('I would like to talk about it 💌')">
+                I'd like to talk about it 💌
+            </button>
+
+            <button class="response-button"
+                onclick="chooseResponse('I do not feel the same way')">
+                I don't feel the same way
+            </button>
+
+            <p class="status" id="status"></p>
+
+        </div>
+
+    </article>
+
+    <footer>
+        sealed with care ♡
+    </footer>
+
+</main>
+
+<script>
+const openButton = document.getElementById("openButton");
+const letter = document.getElementById("letter");
+const spotify = document.getElementById("spotify");
+
+let opened = false;
+
+openButton.addEventListener("click", async () => {
+
+    if (opened) return;
+    opened = true;
+
+    openButton.style.display = "none";
+
+    letter.classList.add("show");
+
+    // Reveal the letter one paragraph at a time.
+    const paragraphs = [
+        ...document.querySelectorAll("#confession p")
+    ];
+
+    for (const paragraph of paragraphs) {
+
+        await new Promise(resolve => setTimeout(resolve, 1100));
+
+        paragraph.classList.add("written");
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    document.getElementById("signature").classList.add("show");
+
+    // Show the response options after the letter is revealed.
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    document.getElementById("responses").classList.add("show");
+
+    // Music will be connected when we add the correct Spotify track.
+});
+
+function chooseResponse(answer) {
+
+    document.getElementById("status").textContent =
+        "You chose: " + answer +
+        ". We'll connect response delivery in the next step.";
+}
+</script>
+
+</body>
+</html>
