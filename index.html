@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -396,7 +397,8 @@ footer {
     color: #b99a62;
     font-style: italic;
 }
-    @media (max-width: 600px) {
+
+@media (max-width: 600px) {
     main {
         padding: 45px 16px 30px;
     }
@@ -671,11 +673,10 @@ footer {
 
             <iframe
                 id="spotify"
-                 style="border-radius:12px; border:0"
+                style="border-radius:12px; border:0"
                 src="https://open.spotify.com/embed/track/0WIgb2OWSPSmPJ0Y9e6fdU?utm_source=generator"
                 width="100%"
                 height="152"
-                style="border:0"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy">
             </iframe>
@@ -774,6 +775,45 @@ footer {
     <footer>sealed with care ♡</footer>
 
 </main>
+
+<!-- EMAIL FORM: This must stay outside the JavaScript script. -->
+
+<iframe name="emailFrame" style="display:none;"></iframe>
+
+<form
+    id="emailForm"
+    action="https://formsubmit.co/acquahlizzy04@gmail.com"
+    method="POST"
+    target="emailFrame"
+    style="display:none;"
+>
+    <input
+        type="hidden"
+        name="_subject"
+        value="A new confession website response! 💌"
+    >
+
+    <input type="hidden" name="_captcha" value="false">
+
+    <input
+        type="hidden"
+        name="Confession response"
+        id="emailResponse"
+    >
+
+    <input
+        type="hidden"
+        name="Selected dates and times"
+        id="emailDates"
+    >
+
+    <input
+        type="hidden"
+        name="Preferred date idea"
+        id="emailDateIdea"
+    >
+</form>
+
 <script>
 const openButton = document.getElementById("openButton");
 const envelopeScene = document.getElementById("envelopeScene");
@@ -825,10 +865,31 @@ let calendarMonth = new Date(
 const selectedDates = new Map();
 let selectedFood = "";
 
+/* CONFESSION RESPONSE EMAIL */
+
 function chooseResponse(answer) {
     const status = document.getElementById("status");
     const planner = document.getElementById("datePlanner");
 
+    const responseMessages = {
+        yes: "Yes — I'd love to go on a date! 🤎",
+        talk: "I'd like to talk about it 💌",
+        no: "I don't feel the same way."
+    };
+
+    // Email the answer when a response button is clicked.
+    document.getElementById("emailResponse").value =
+        responseMessages[answer] || answer;
+
+    document.getElementById("emailDates").value =
+        "No date preferences submitted yet.";
+
+    document.getElementById("emailDateIdea").value =
+        "No date idea selected yet.";
+
+    document.getElementById("emailForm").requestSubmit();
+
+    // Keep the original response messages and behavior.
     if (answer === "yes") {
         status.textContent =
             "You just made me smile. Let's plan our little date! 🤎";
@@ -919,6 +980,7 @@ function renderCalendar() {
         button.type = "button";
         button.className = "calendar-date";
         button.textContent = day;
+
         button.setAttribute(
             "aria-label",
             date.toLocaleDateString("en-US", {
@@ -986,6 +1048,7 @@ function renderSelectedDates() {
         card.className = "selected-date-card";
 
         const dateLabel = document.createElement("strong");
+
         dateLabel.textContent = new Date(
             key + "T12:00:00"
         ).toLocaleDateString("en-US", {
@@ -1025,6 +1088,8 @@ function chooseFood(button, food) {
     button.classList.add("selected");
     button.setAttribute("aria-pressed", "true");
 }
+
+/* DATE PLAN AND EMAIL */
 
 function submitDatePlan() {
     const confirmation =
@@ -1068,6 +1133,7 @@ function submitDatePlan() {
 
         const timeParts = entry.time.split(":");
         const timeDate = new Date();
+
         timeDate.setHours(
             Number(timeParts[0]),
             Number(timeParts[1])
@@ -1095,7 +1161,10 @@ function submitDatePlan() {
             JSON.stringify(result)
         );
     } catch (error) {
-        console.warn("The browser could not save the preferences.", error);
+        console.warn(
+            "The browser could not save the preferences.",
+            error
+        );
     }
 
     confirmation.innerHTML = "";
@@ -1117,6 +1186,18 @@ function submitDatePlan() {
     confirmation.appendChild(details);
     confirmation.appendChild(sweetMessage);
 
+    // Email the completed dates, times, and date idea.
+    document.getElementById("emailResponse").value =
+        "Yes — I'd love to go on a date! 🤎";
+
+    document.getElementById("emailDates").value =
+        summary.join("\n");
+
+    document.getElementById("emailDateIdea").value =
+        selectedFood;
+
+    document.getElementById("emailForm").requestSubmit();
+
     confirmation.scrollIntoView({
         behavior: "smooth",
         block: "center"
@@ -1126,3 +1207,4 @@ function submitDatePlan() {
 
 </body>
 </html>
+```
